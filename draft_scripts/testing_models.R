@@ -29,3 +29,9 @@ length(punkea$is_above_90[punkea$is_above_90 == TRUE])
 
 punkea %>% ggplot(mapping = aes(x = is_above_90, y = price)) +
   geom_boxplot()
+
+punkea %>% filter(designer_name_length < 30) %>% ggplot(mapping = aes(x = size, y = name_length, color = price)) +
+  scale_color_viridis_c() +
+  geom_point() +
+  facet_wrap(~cut_interval(designer_name_length, 8))
+
